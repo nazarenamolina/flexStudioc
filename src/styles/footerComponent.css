@@ -1,0 +1,16 @@
+.ContainerF
+{
+    display: flex;
+    justify-content: space-around;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    padding: 20px;
+}
+
+.LogoF
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
