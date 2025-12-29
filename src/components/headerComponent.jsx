@@ -1,32 +1,31 @@
 import { Button, Container, Form, Nav, Navbar, NavDropdown, Offcanvas } from "react-bootstrap";
 import "../styles/headerComponent.css";
+import imagenMap from '../assets/ImagenMap.js';
+import {ShoppingCart, CircleUser} from "lucide-react";
 
 function HeaderComponent() {
 
   return (
     <>
-        {/* <Navbar expand="lg" fixed="top" className="custom-navbar">
+       <Navbar expand="lg" fixed="top" className="custom-navbar">
           <Container fluid>
-            <Navbar.Brand href="/">Flex Studio</Navbar.Brand>
+            <Navbar.Brand href="/"><img src={imagenMap.Logo} className='logo' alt="Logo" width={100}/>Flex Studio
+            </Navbar.Brand>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand`} />
             <Navbar.Offcanvas
               id={`offcanvasNavbar-expand`}
               aria-labelledby={`offcanvasNavbarLabel-expand`}
-              placement="end"
-            >
+              placement="end">
               <Offcanvas.Header closeButton>
                 <Offcanvas.Title id={`offcanvasNavbarLabel-expand`}>
-                  Offcanvas
+                  Flex Studio
                 </Offcanvas.Title>
               </Offcanvas.Header>
               <Offcanvas.Body>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
-                  <Nav.Link href="#action1">Home</Nav.Link>
-                  <Nav.Link href="#action2">Link</Nav.Link>
                   <NavDropdown
-                    title="Dropdown"
-                    id={`offcanvasNavbarDropdown-expand`}
-                  >
+                    title="Clases"
+                    id={`offcanvasNavbarDropdown-expand`}>
                     <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
                     <NavDropdown.Item href="#action4">
                       Another action
@@ -36,6 +35,10 @@ function HeaderComponent() {
                       Something else here
                     </NavDropdown.Item>
                   </NavDropdown>
+                  <Nav.Link href="#action1"><CircleUser />Login</Nav.Link>
+                  <Nav.Link href="#action2">Registrate</Nav.Link>
+                        <Nav.Link href="#action1">Carrito<ShoppingCart />
+                        </Nav.Link>
                 </Nav>
                 <Form className="d-flex">
                   <Form.Control
@@ -49,7 +52,7 @@ function HeaderComponent() {
               </Offcanvas.Body>
             </Navbar.Offcanvas>
           </Container>
-        </Navbar> */}
+      </Navbar>
     </>
   );
 }
