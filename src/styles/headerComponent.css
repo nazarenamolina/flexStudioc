@@ -1,8 +1,6 @@
-
-
 .custom-navbar {
-  background-color: transparent;
-  transition: background-color 0.3s ease; /* Para que si luego añades JS, el cambio sea suave */
+  background-color: rgb(255, 0, 238);
+  transition: background-color 0.3s ease;
   padding: 1.5rem 2rem;
 }
 

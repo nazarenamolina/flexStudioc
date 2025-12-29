@@ -7,5 +7,4 @@
 
 .main-content {
     flex-grow: 1;
-    /* Esto es la magia: ocupa todo el espacio sobrante */
 }
