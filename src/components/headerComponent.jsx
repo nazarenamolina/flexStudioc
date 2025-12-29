@@ -5,7 +5,7 @@ function HeaderComponent() {
 
   return (
     <>
-        <Navbar expand="lg" fixed="top" className="custom-navbar">
+        {/* <Navbar expand="lg" fixed="top" className="custom-navbar">
           <Container fluid>
             <Navbar.Brand href="/">Flex Studio</Navbar.Brand>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand`} />
@@ -49,7 +49,7 @@ function HeaderComponent() {
               </Offcanvas.Body>
             </Navbar.Offcanvas>
           </Container>
-        </Navbar>
+        </Navbar> */}
     </>
   );
 }
