@@ -1,0 +1,14 @@
+*{
+    background-color: #161616;
+}
+
+.custom-navbar {
+  background-color: transparent;
+  transition: background-color 0.3s ease; /* Para que si luego añades JS, el cambio sea suave */
+  padding: 1.5rem 2rem;
+}
+
+.custom-navbar .nav-link, .custom-navbar .navbar-brand {
+  color: white;
+  font-weight: 500;
+}
