@@ -32,13 +32,19 @@ function HeaderComponent() {
                 
                 <Nav className="align-items-center gap-3 gap-lg-4 mb-3 mb-lg-0">
                   <NavDropdown
-                    title="Cursos"
+                    title="Clases"
                     id={`offcanvasNavbarDropdown-expand-lg`}
                     className="custom-dropdown"
                   >
                     <NavDropdown.Item href="#action3">Deportistas</NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item href="#action4">Progresivas Generales</NavDropdown.Item>
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item href="#action3">Gimnastas</NavDropdown.Item>
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item href="#action3">Acróbatas</NavDropdown.Item>
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item href="#action3">Bailarinas</NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item href="#action5">Patinadoras</NavDropdown.Item>
                   </NavDropdown>

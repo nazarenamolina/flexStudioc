@@ -8,20 +8,17 @@ function FooterComponent() {
         
         {/* Columna 1: Logo y Descripción */}
         <article className="columna-footer logo-col">
-          <img src={imagenMap.Logo} className='logofooter' alt="Logo Flex Studio" />
+          <img src={imagenMap.logofooter} className='logofooter' alt="Logo Flex Studio" />
         </article>
 
         {/* Columna 2: Redes Sociales */}
         <article className="columna-footer">
           <h3 className="titulo-footer">Redes Sociales</h3>
           <div className="lista-redes">
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="item-red">
-              <span className="icono-circulo"><FaFacebookF /></span> Facebook
-            </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="item-red">
+            <a href="https://www.instagram.com/flex_studioc/" target="_blank" rel="noopener noreferrer" className="item-red">
               <span className="icono-circulo"><FaInstagram /></span> Instagram
             </a>
-            <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className="item-red">
+            <a href="https://www.tiktok.com/@flexstudioc" target="_blank" rel="noopener noreferrer" className="item-red">
               <span className="icono-circulo"><FaTiktok /></span> Tiktok
             </a>
           </div>
@@ -44,7 +41,7 @@ function FooterComponent() {
           <div className="info-contacto">
             <div className="item-contacto">
               <FaEnvelope className="icono-contacto" />
-              <p>cande@flexstudio.com</p>
+              <p>candeimbo@gmail.com</p>
             </div>
             <div className="item-contacto">
               <FaMapMarkerAlt className="icono-contacto" />
