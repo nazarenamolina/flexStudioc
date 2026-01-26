@@ -1,4 +1,4 @@
-import Logo from '../assets/img/logo.png';
+import Logo from '../assets/img/Logo.png';
 import fondo from '../assets/img/fondo.png';
 import Banner from '../assets/img/Banner.png';
 import QuienSoy from '../assets/img/QuienSoy.png';
