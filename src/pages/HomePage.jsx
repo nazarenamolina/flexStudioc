@@ -76,7 +76,7 @@ function HomePage() {
           </Carousel>
         </section>
         <section>
-        <Image src={imagenMap.titulo} rounded className='mt-5 mb-5'/>
+        <Image src={imagenMap.titulo} className='ExplorarClases'/>
         <article className="articleflexible">
             
             {serviciosData.map((servicio) => (
