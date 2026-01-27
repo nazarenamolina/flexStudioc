@@ -13,7 +13,7 @@ function HomePage() {
       descripcion: "Con este entrenamiento especializado, vas a mejorar tu flexibilidad, conseguir mayor amplitud en tus figuras y trompos, y sentir más control en la pista.",
       popover: "Diseñado para patinadoras que buscan resultados reales. ¡Junt@s vamos a lograr tus metas!",
       link: "/clases-patin",
-      image: imagenMap.prueba
+      image: imagenMap.patinadora
     },
     {
       id: 2,
@@ -22,7 +22,7 @@ function HomePage() {
       descripcion: "Si nunca entrenaste tu flexibilidad o querés llevarla al siguiente nivel, este entrenamiento progresivo está diseñado especialmente para vos. Trabajaremos con métodos efectivos y adaptados a tu nivel.",
       popover: "Alcanzarás tus metas de manera segura y divertida. ¡Junt@s vamos a lograrlo!",
       link: "/progresivas",
-      image: imagenMap.prueba
+      image: imagenMap.progresiva
     },
     {
       id: 3,
@@ -31,7 +31,34 @@ function HomePage() {
       descripcion: "Con este entrenamiento especializado, vas a potenciar tu rendimiento deportivo, ganar agilidad y sentirte mas seguro en cada movimiento de tu deporte.",
       popover: "Diseñado para deportistas que buscan resultados reales. ¡Junt@s vamos a lograr tus metas! ",
       link: "/deportistas",
-      image: imagenMap.prueba
+      image: imagenMap.deportista
+    },
+        {
+      id: 4,
+      titulo: "Clases para Bailarinas",
+      bagde: "PLAN MENSUAL",
+      descripcion: "Con este entrenamiento especializado, vas a potenciar tu rendimiento deportivo, ganar agilidad y sentirte mas seguro en cada movimiento de tu deporte.",
+      popover: "Diseñado para deportistas que buscan resultados reales. ¡Junt@s vamos a lograr tus metas! ",
+      link: "/deportistas",
+      image: imagenMap.bailarina
+    },
+        {
+      id: 5,
+      titulo: "Clases para Gimnastas",
+      bagde: "PLAN MENSUAL",
+      descripcion: "Con este entrenamiento especializado, vas a potenciar tu rendimiento deportivo, ganar agilidad y sentirte mas seguro en cada movimiento de tu deporte.",
+      popover: "Diseñado para deportistas que buscan resultados reales. ¡Junt@s vamos a lograr tus metas! ",
+      link: "/deportistas",
+      image: imagenMap.gimnasta
+    },
+       {
+      id: 6,
+      titulo: "Clases para Acróbatas",
+      bagde: "PLAN MENSUAL",
+      descripcion: "Con este entrenamiento especializado, vas a potenciar tu rendimiento deportivo, ganar agilidad y sentirte mas seguro en cada movimiento de tu deporte.",
+      popover: "Diseñado para deportistas que buscan resultados reales. ¡Junt@s vamos a lograr tus metas! ",
+      link: "/deportistas",
+      image: imagenMap.acrobata
     }
   ];
 
@@ -49,7 +76,7 @@ function HomePage() {
           </Carousel>
         </section>
         <section>
-        <h1><strong>EXPLORAR CURSOS</strong></h1>
+        <Image src={imagenMap.titulo} className='ExplorarClases'/>
         <article className="articleflexible">
             
             {serviciosData.map((servicio) => (
@@ -66,7 +93,7 @@ function HomePage() {
                 <Card.Body className="card-body p-4">
                   <div className="badge-container">
                     <span className="badge-trend">{servicio.bagde}</span>
-                    <span className="badge-time"><FaClock className="me-1"/>1 hora</span>
+                    <span className="badge-time"><FaClock className="me-1"/>1h 15min </span>
                   </div>
                   <div className="mt-4">
                     <Card.Title className="display-6 fw-bold mb-3 lh-1">
