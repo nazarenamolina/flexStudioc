@@ -82,7 +82,6 @@ function HomePage() {
             {serviciosData.map((servicio) => (
               
               <Card key={servicio.id} className="course-card border-0 text-white">
-                {/* La imagen ahora es un fondo con filtro */}
                 <div 
                   className="card-background" 
                   style={{ backgroundImage: `url(${servicio.image || 'holder.js/300x500'})` }}
