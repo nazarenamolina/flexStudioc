@@ -36,26 +36,26 @@ function HeaderComponent() {
                     id={`offcanvasNavbarDropdown-expand-lg`}
                     className="custom-dropdown"
                   >
-                    <NavDropdown.Item href="#action3">Deportistas</NavDropdown.Item>
+                    <NavDropdown.Item href="/deportistas">Deportistas</NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href="#action4">Progresivas Generales</NavDropdown.Item>
+                    <NavDropdown.Item href="/progresivas">Progresivas Generales</NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href="#action3">Gimnastas</NavDropdown.Item>
+                    <NavDropdown.Item href="/gimnastas">Gimnastas</NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href="#action3">Acróbatas</NavDropdown.Item>
+                    <NavDropdown.Item href="/acrobatas">Acróbatas</NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href="#action3">Bailarinas</NavDropdown.Item>
+                    <NavDropdown.Item href="/bailarinas">Bailarinas</NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href="#action5">Patinadoras</NavDropdown.Item>
+                    <NavDropdown.Item href="/patinadoras">Patinadoras</NavDropdown.Item>
                   </NavDropdown>
 
-                  <Nav.Link href="#login" className="d-flex align-items-center">
+                  <Nav.Link href="/login" className="d-flex align-items-center">
                     <CircleUser size={20} className="me-2" /> Login
                   </Nav.Link>
                   
-                  <Nav.Link href="#registro">Registrate</Nav.Link>
+                  <Nav.Link href="/registro">Registrate</Nav.Link>
                   
-                  <Nav.Link href="#carrito" className="d-flex align-items-center">
+                  <Nav.Link href="/carrito" className="d-flex align-items-center">
                     Carrito <ShoppingCart size={20} className="ms-2" />
                   </Nav.Link>
                 </Nav>
