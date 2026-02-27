@@ -1,9 +1,20 @@
 import { Button, Container, Form, Nav, Navbar, NavDropdown, Offcanvas } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import "../styles/headerComponent.css";
 import imagenMap from '../assets/ImagenMap.js';
-import { ShoppingCart, CircleUser, Search } from "lucide-react";
+import { ShoppingCart, CircleUser, Search, LogOut } from "lucide-react";
+import { useAuthStore } from "../store/authStore";
+
 
 function HeaderComponent() {
+
+  const { usuario, estaAutenticado, cerrarSesion } = useAuthStore()
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    cerrarSesion();
+    navigate("/login");
+  }
 
   return (
     <>
@@ -11,11 +22,11 @@ function HeaderComponent() {
         <Container fluid>
 
           <Navbar.Brand href="/">
-            <img src={imagenMap.Logo} className='logo' alt="Logo"/>
+            <img src={imagenMap.Logo} className='logo' alt="Logo" />
           </Navbar.Brand>
 
           <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-lg`} className="border-0" />
-          
+
           <Navbar.Offcanvas
             id={`offcanvasNavbar-expand-lg`}
             aria-labelledby={`offcanvasNavbarLabel-expand-lg`}
@@ -26,10 +37,10 @@ function HeaderComponent() {
                 <img src={imagenMap.Logo} className='logo' alt="Logo" />
               </Offcanvas.Title>
             </Offcanvas.Header>
-            
+
             <Offcanvas.Body>
               <div className="d-flex flex-column flex-lg-row justify-content-end align-items-lg-center flex-grow-1 gap-3">
-                
+
                 <Nav className="align-items-center gap-3 gap-lg-4 mb-3 mb-lg-0">
                   <NavDropdown
                     title="Clases"
@@ -48,13 +59,25 @@ function HeaderComponent() {
                     <NavDropdown.Divider />
                     <NavDropdown.Item href="/patinadoras">Patinadoras</NavDropdown.Item>
                   </NavDropdown>
+                  {estaAutenticado ? (
+                    // Si el usuario ESTÁ logueado, mostramos su nombre y un menú
+                    <NavDropdown
+                      title={<span className="d-flex align-items-center"><CircleUser size={20} className="me-2" /> Hola, {usuario?.nombre}</span>}id="usuario-dropdown" className="custom-dropdown">
+                      <NavDropdown.Item href="/mi-perfil">Mi Perfil</NavDropdown.Item>
+                      <NavDropdown.Divider />
+                      <NavDropdown.Item onClick={handleLogout} className="text-danger d-flex align-items-center">
+                        <LogOut size={16} className="me-2" /> Cerrar Sesión
+                      </NavDropdown.Item>
+                    </NavDropdown>
+                  ) : (
+                    <>
+                      <Nav.Link href="/login" className="d-flex align-items-center">
+                        <CircleUser size={20} className="me-2" /> Login
+                      </Nav.Link>
+                      <Nav.Link href="/registro">Registrate</Nav.Link>
+                    </>
+                  )}
 
-                  <Nav.Link href="/login" className="d-flex align-items-center">
-                    <CircleUser size={20} className="me-2" /> Login
-                  </Nav.Link>
-                  
-                  <Nav.Link href="/registro">Registrate</Nav.Link>
-                  
                   <Nav.Link href="/carrito" className="d-flex align-items-center">
                     Carrito <ShoppingCart size={20} className="ms-2" />
                   </Nav.Link>
