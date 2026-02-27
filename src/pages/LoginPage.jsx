@@ -1,9 +1,45 @@
-import { Link } from "react-router-dom";
-import { Button, Form, InputGroup } from "react-bootstrap";
-import { FaEnvelope, FaLock, FaSpa } from "react-icons/fa"; 
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Button, Form, InputGroup, Alert } from "react-bootstrap";
+import { FaEnvelope, FaLock, FaSpa } from "react-icons/fa";
+import { loginRequest } from "../api/auth";
+import { useAuthStore } from "../store/authStore";
 import "../styles/loginComponent.css";
 
 function LoginPage() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMensaje, setErrorMensaje] = useState(null);
+  const navigate = useNavigate();
+  const iniciarSesion = useAuthStore((state) => state.iniciarSesion);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setErrorMensaje(null);
+
+    try {
+      const respuesta = await loginRequest({
+        correo: email,
+        contrasena: password
+      });
+      const usuarioLogueado = respuesta.data.usuario;
+      iniciarSesion(usuarioLogueado);
+
+      setTimeout(() => {
+        if (usuarioLogueado.rol === 'ADMIN') {
+          navigate("/admin");
+        } else {
+          navigate("/");
+        }
+      }, 100);
+
+    } catch (error) {
+      console.error("Falló el login", error);
+      setErrorMensaje(
+        error.response?.data?.message || "Ocurrió un error al intentar iniciar sesión."
+      );
+    }
+  };
+
   return (
     <div className="login-wrapper">
       <section className="login-content">
@@ -15,21 +51,25 @@ function LoginPage() {
             <h1>Bienvenido de nuevo</h1>
             <p className="subtitle">Accede a tu panel para gestionar tus turnos y continuar tu progreso.</p>
           </div>
-          <Form className="custom-form">
+          <Form className="custom-form" onSubmit={handleSubmit}>
+            {errorMensaje && (<Alert variant="danger" className="text-center py-2">{errorMensaje}</Alert>
+            )}
             <Form.Group className="mb-4" controlId="formBasicEmail">
               <Form.Label>EMAIL</Form.Label>
               <InputGroup className="custom-input-group">
                 <InputGroup.Text><FaEnvelope /></InputGroup.Text>
-                <Form.Control type="email" placeholder="nombre@ejemplo.com" />
+                <Form.Control type="email" placeholder="nombre@ejemplo.com" required value={email} onChange={(e) => setEmail(e.target.value)} />
               </InputGroup>
             </Form.Group>
+
             <Form.Group className="mb-4" controlId="formBasicPassword">
               <Form.Label>CONTRASEÑA</Form.Label>
               <InputGroup className="custom-input-group">
                 <InputGroup.Text><FaLock /></InputGroup.Text>
-                <Form.Control type="password" placeholder="........" />
+                <Form.Control type="password" placeholder="........" required value={password} onChange={(e) => setPassword(e.target.value)} />
               </InputGroup>
             </Form.Group>
+
             <div className="d-flex justify-content-between align-items-center mb-4 options-row">
               <Form.Group controlId="formBasicCheckbox">
                 <Form.Check type="checkbox" label="Recordarme" className="custom-checkbox" />
@@ -41,8 +81,9 @@ function LoginPage() {
             <Button variant="primary" type="submit" className="login-btn">
               INICIAR SESIÓN
             </Button>
+
             <div className="form-footer mt-4">
-              <p>¿Aún no tienes una cuenta? <Link to="/register" className="create-account-link">CREAR CUENTA</Link></p>
+              <p>¿Aún no tienes una cuenta? <Link to="/registro" className="create-account-link">CREAR CUENTA</Link></p>
             </div>
           </Form>
         </article>
