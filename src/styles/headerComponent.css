@@ -1,12 +1,71 @@
-
-
-.custom-navbar {
-  background-color: transparent;
-  transition: background-color 0.3s ease; /* Para que si luego añades JS, el cambio sea suave */
-  padding: 1.5rem 2rem;
+:root {
+  --text-primary: #161616; 
+  --text-hover: #d7f250;
 }
 
-.custom-navbar .nav-link, .custom-navbar .navbar-brand {
-  color: white;
+.custom-navbar {
+  padding: 0px;
+}
+
+.container-fluid{
+  background-color: transparent;
+}
+
+.logo{
+  width: 30%; 
+  object-fit: contain; 
+  padding-left: 20px;
+}
+
+.custom-navbar .container-fluid {
+    flex-wrap: nowrap;
+}
+
+.custom-navbar .nav-link, 
+.custom-navbar .navbar-brand,
+.custom-navbar .nav-link.show {
+  color: var(--text-primary);
   font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+}
+
+.custom-navbar .nav-link:hover {
+  color: var(--text-hover);
+}
+
+.search-form {
+  position: relative;
+  max-width: 550px; 
+}
+
+.search-input {
+  border-radius: 15px;
+  border: 1px solid #ccc;
+  padding-right: 70px; 
+  color: var(--text-primary);
+}
+
+.search-input:focus {
+  box-shadow: none;
+  border-color: var(--text-hover);
+}
+
+.search-btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  color: var(--text-primary);
+  border: none;
+  display: flex;
+  align-items: center;
+}
+
+.search-btn:hover {
+  color: var(--text-hover);
+}
+
+.dropdown-toggle::after {
+  vertical-align: middle;
 }

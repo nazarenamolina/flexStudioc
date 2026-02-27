@@ -1,8 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Russo+One&display=swap');
+
+h1,h2,h3,h4,p,a,button,span{
+ font-family: "Exo 2", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
 .app-container {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-   background-color: #161616;
+    background-image: url(../src/assets/img/fondo.png);
+    background-position: center;
+    
 }
 
 .main-content {

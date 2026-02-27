@@ -1,61 +1,67 @@
 import "../styles/footerComponent.css";
-import imagenMap from '../assets/ImagenMap.js';
-import { FaFacebook, FaInstagram, FaTiktok } from "react-icons/fa";
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button'; // Agregué un botón para el form
-
+import imagenMap from '../assets/ImagenMap.js'; 
+import { FaFacebookF, FaInstagram, FaTiktok, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 function FooterComponent() {
   return (
     <footer className="footer-general">
-      {/* Sección Principal con las 3 columnas */}
-      <section className="ContainerF">
+      <div className="main-content">
         
-        {/* Columna 1: Marca */}
-        <article className="columna-footer LogoF">
-          <img src={imagenMap.Logo} className='logo' alt="Logo Flex Studio" />
-          <p className="slogan">Aprende flexibilidad sin lesiones.</p>
-          
-          <div className="iconosRedes">
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="icon-link"><FaFacebook /></a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="icon-link"><FaInstagram /></a>
-            <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className="icon-link"><FaTiktok /></a>
+        {/* Columna 1: Logo y Descripción */}
+        <article className="columna-footer logo-col">
+          <img src={imagenMap.logofooter} className='logofooter' alt="Logo Flex Studio" />
+        </article>
+
+        {/* Columna 2: Redes Sociales */}
+        <article className="columna-footer">
+          <h3 className="titulo-footer">Redes Sociales</h3>
+          <div className="lista-redes">
+            <a href="https://www.instagram.com/flex_studioc/" target="_blank" rel="noopener noreferrer" className="item-red">
+              <span className="icono-circulo"><FaInstagram /></span> Instagram
+            </a>
+            <a href="https://www.tiktok.com/@flexstudioc" target="_blank" rel="noopener noreferrer" className="item-red">
+              <span className="icono-circulo"><FaTiktok /></span> Tiktok
+            </a>
           </div>
         </article>
 
-        {/* Columna 2: Navegación */}
-        <article className="columna-footer InfoF">
-          <h3>Información</h3>
+        {/* Columna 3: Información */}
+        <article className="columna-footer">
+          <h3 className="titulo-footer">Información</h3>
           <ul className="lista-links">
-            <li><a href="/acerca-de">Acerca de nosotros</a></li>
+            <li><a href="/acerca-de">Acerca de mí</a></li>
             <li><a href="/cursos">Ver Cursos</a></li>
             <li><a href="/terminos-y-condiciones">Términos y Condiciones</a></li>
             <li><a href="/politica-de-privacidad">Política de Privacidad</a></li>
           </ul>
         </article>
 
-        {/* Columna 3: Contacto (Formulario) */}
-        <article className="columna-footer ContactoF">
-          <h3>Contáctanos</h3>
-          <Form className="formulario-footer">
-            <Form.Group className="mb-3" controlId="emailInput">
-              <Form.Label>Email</Form.Label>
-              <Form.Control type="email" placeholder="nombre@ejemplo.com" />
-            </Form.Group>
-            
-            <Form.Group className="mb-3" controlId="mensajeInput">
-              <Form.Label>Mensaje</Form.Label>
-              <Form.Control as="textarea" rows={3} placeholder="¿En qué podemos ayudarte?" />
-            </Form.Group>
-            
-            <Button type="submit" className="w-100 btn-custom">
-              Enviar
-            </Button>
-          </Form>
+        {/* Columna 4: Contacto */}
+        <article className="columna-footer">
+          <h3 className="titulo-footer">Contacto</h3>
+          <div className="info-contacto">
+            <div className="item-contacto">
+              <FaEnvelope className="icono-contacto" />
+              <p>candeimbo@gmail.com</p>
+            </div>
+            <div className="item-contacto">
+              <FaMapMarkerAlt className="icono-contacto" />
+              <p>Yerba Buena<br />Tucumán, Argentina</p>
+            </div>
+          </div>
         </article>
-         <div className="copyright-bar">
-        <p>© {new Date().getFullYear()} Flex Studio. Todos los derechos reservados.</p>
+
       </div>
-      </section>
+
+      {/* Barra inferior de Copyright */}
+      <div className="copyright-bar">
+        <div className="copyright-content">
+            <p>© {new Date().getFullYear()} Flex Studio. Todos los derechos reservados.</p>
+            <div className="legales">
+                <a href="/aviso-legal">Aviso Legal</a>
+                <a href="/cookies">Cookies</a>
+            </div>
+        </div>
+      </div>
     </footer>
   );
 }
