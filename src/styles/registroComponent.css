@@ -1,0 +1,98 @@
+.registro-container {
+    max-width: 400px;
+    margin: 40px auto;
+    font-family: sans-serif;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:disabled {
+    background-color: #999;
+}
+
+.password-container {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.input-password {
+    flex: 1;
+}
+
+.btn-toggle-password {
+    width: auto;
+    padding: 8px 12px;
+    background-color: #444;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-toggle-password:hover {
+    background-color: #555;
+}
+
+.btn-submit {
+    margin-top: 20px;
+    width: 100%;
+    padding: 12px;
+    background-color: #000;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-submit:disabled {
+    background-color: #999;
+    cursor: not-allowed;
+}
+
+.password-rules {
+    list-style: none;
+    padding: 0;
+    margin: 8px 0 0 0;
+    font-size: 12px;
+}
+
+.password-rules li {
+    margin-bottom: 4px;
+    transition: color 0.3s ease;
+}
+
+.rule-pass {
+    color: #28a745;
+}
+
+.rule-fail {
+    color: #dc3545; 
+}
