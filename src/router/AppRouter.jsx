@@ -16,6 +16,7 @@ import { RutaAdmin } from './RutaAdmin.jsx';
 import { RutaProtegida } from './RutaProtegida.jsx';
 import { RutaPublica } from './RutaPublica.jsx';
 
+
 const LayoutConNav = () => {
   return (
     <div className="app-container">
