@@ -12,10 +12,11 @@ import PatinadorasPage from '../pages/PatinadorasPage.jsx';
 import ProgresivasPage from '../pages/ProgresivasPage.jsx';
 import CarritoPage from '../pages/CarritoPage.jsx';
 import AdminDashboardPage from '../pages/admin/AdminDashboardPage.jsx';
+import AdminLayout from '../components/admin/AdminLayout.jsx';
+import CategoriasPage from '../pages/admin/CategoriasPage.jsx';
 import { RutaAdmin } from './RutaAdmin.jsx';
 import { RutaProtegida } from './RutaProtegida.jsx';
 import { RutaPublica } from './RutaPublica.jsx';
-
 
 const LayoutConNav = () => {
   return (
@@ -33,14 +34,24 @@ export const AppRouter = () => {
   return (
     <BrowserRouter>
       <Routes>
+        
+        {/* --- 1. RUTAS PÚBLICAS (Sin Nav, solo Login/Registro) --- */}
         <Route element={<RutaPublica />}>
           <Route path='/login' element={<LoginPage />} />
           <Route path='/registro' element={<RegistroPage />} />
         </Route>
-        <Route element={<LayoutConNav />}>
-          <Route element={<RutaAdmin />}>
-            <Route path='/admin' element={<AdminDashboardPage />} />
+
+
+        <Route element={<RutaAdmin />}>
+          <Route element={<AdminLayout />}>
+            <Route path="/admin" element={<AdminDashboardPage />} />
+            <Route path="/admin/categorias" element={<CategoriasPage />} />
+            {/* Futuras rutas del panel irán aquí */}
           </Route>
+        </Route>
+
+
+        <Route element={<LayoutConNav />}>
           <Route path='/' element={<HomePage />} />
           <Route element={<RutaProtegida />}>
             <Route path='/acrobatas' element={<AcrobatasPage />} />
