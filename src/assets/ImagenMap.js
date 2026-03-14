@@ -11,6 +11,7 @@ import progresiva from '../assets/img/progresiva.jpeg';
 import titulo from '../assets/img/titulo.png';
 import logofooter from '../assets/img/logofooter.png';
 import loguito from '../assets/img/loguito.png';
+import fondologin from '../assets/img/fondologin.jpg';
 
 
 const ImageMap ={
@@ -26,7 +27,8 @@ const ImageMap ={
     progresiva,
     titulo, 
     logofooter,
-    loguito
+    loguito,
+    fondologin
 }
 
 export default ImageMap;
