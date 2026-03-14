@@ -62,11 +62,11 @@ function HeaderComponent() {
                   {estaAutenticado ? (
                     // Si el usuario ESTÁ logueado, mostramos su nombre y un menú
                     <NavDropdown
-                      title={<span className="d-flex align-items-center"><CircleUser size={20} className="me-2" /> Hola, {usuario?.nombre}</span>}id="usuario-dropdown" className="custom-dropdown">
+                      title={<span><CircleUser size={23} className="me-1" /> Hola, {usuario?.nombre}</span>}id="usuario-dropdown" className="custom-dropdown">
                       <NavDropdown.Item href="/mi-perfil">Mi Perfil</NavDropdown.Item>
                       <NavDropdown.Divider />
-                      <NavDropdown.Item onClick={handleLogout} className="text-danger d-flex align-items-center">
-                        <LogOut size={16} className="me-2" /> Cerrar Sesión
+                      <NavDropdown.Item onClick={handleLogout} className="text-danger">
+                        <LogOut size={16} className="me-2"/> Cerrar Sesión
                       </NavDropdown.Item>
                     </NavDropdown>
                   ) : (

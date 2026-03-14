@@ -1,107 +1,94 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box; 
+}
+
 :root {
-  --accent-color: #A08C5B;
-  --text-dark: #1A1A1A;
-  --text-gray: #666666;
-  --input-bg: #F5F5F5;
+  --bg-dark: #161616;
+  --bg-form-side: #181818;
+  --neon-accent: #d7f250;
+  --text-light: #ffffff;
+  --text-gray: #a0a0a0;
+  --input-bg: #1e1e1e;
 }
 
-/* 1. Layout General y Fondo */
 .login-wrapper {
-  position: relative;
-  min-height: 100vh;
-  background-color: var(--bg-color);
-  font-family: var(--font-family);
-  overflow: hidden; /* Para cortar los blobs si se salen */
   display: flex;
-  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--bg-dark);
 }
 
-/* 2. Las "Manchas" (Blobs) decorativas */
-.blob {
-  position: absolute;
-  background-color: var(--blob-color);
-  border-radius: 50%;
-  z-index: 0; /* Detrás del contenido */
-  filter: blur(40px); /* Suaviza los bordes */
-}
-
-.blob-top-left {
-  width: 600px;
-  height: 600px;
-  top: -200px;
-  left: -200px;
-  border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; /* Forma orgánica */
-}
-
-.blob-bottom-right {
-  width: 700px;
-  height: 600px;
-  bottom: -200px;
-  right: -200px;
-  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-}
-
-/* 3. Link de Volver */
-.back-link {
+.login-image-side {
+  flex: 1.2;
+  background-image: url('../src/assets/img/fondologin.jpg');
+  background-size: cover;
+  background-position: center;
   position: relative;
-  z-index: 10;
-  padding: 2rem;
+}
+
+.back-link {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  background-color: rgba(20, 20, 20, 0.8);
   color: var(--text-gray);
+  padding: 0.6rem 1.2rem;
+  border-radius: 4px;
   text-decoration: none;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
+  font-weight: 600;
   display: flex;
   align-items: center;
   gap: 8px;
   text-transform: uppercase;
   letter-spacing: 1px;
+  transition: color 0.3s ease;
 }
 
-/* 4. Contenedor de la Tarjeta */
-.login-content {
+.back-link:hover {
+  color: var(--text-light);
+}
+
+.login-form-side {
   flex: 1;
   display: flex;
-  align-items: center;
   justify-content: center;
-  position: relative;
-  z-index: 10; /* Encima de los blobs */
-  padding: 20px;
+  align-items: center;
+  background-color: var(--bg-form-side);
+  padding: 2rem;
 }
 
 .login-card {
   width: 100%;
-  max-width: 450px;
-  text-align: center;
-}
-
-/* 5. Header: Icono y Títulos */
-.icon-circlelogin {
-  width: 60px;
-  height: 60px;
-  background: white;
-  border-radius: 50%;
+  max-width: 420px;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 20px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  flex-direction: column;
 }
 
-.login-header h1 {
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--text-dark);
-  margin-bottom: 10px;
-  letter-spacing: -0.5px;
+.login-header {
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
-.subtitle {
-  color: var(--text-gray);
-  font-size: 0.95rem;
-  margin-bottom: 40px;
-  line-height: 1.5;
+.iconologin {
+  width: 70px;
+  height: 70px;
+  border: 2px solid var(--text-light);
+  border-radius: 50%;
+  margin-bottom: 1.5rem;
+  object-fit: cover;
 }
 
-/* 6. Formulario e Inputs */
+.login-header h3 {
+  color: var(--neon-accent);
+  font-size: 2.8rem;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -1px;
+}
+
 .custom-form {
   text-align: left;
 }
@@ -109,30 +96,25 @@
 .custom-form label {
   font-size: 0.75rem;
   font-weight: 700;
-  color: var(--accent-color);
+  color: var(--text-gray);
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-bottom: 8px;
 }
 
-/* Overrides para Bootstrap Inputs */
 .custom-input-group {
-  border: 1px solid #E0E0E0;
-  border-radius: 4px;
+  border: 1px solid var(--neon-accent);
+  border-radius: 6px;
   overflow: hidden;
   background-color: var(--input-bg);
+  box-shadow: 0 0 8px rgba(212, 255, 20, 0.1);
   transition: all 0.3s ease;
-}
-
-.custom-input-group:focus-within {
-  border-color: var(--accent-color);
-  box-shadow: 0 0 0 2px rgba(160, 140, 91, 0.1);
 }
 
 .custom-input-group .input-group-text {
   background: transparent;
   border: none;
-  color: #999;
+  color: var(--text-gray);
   padding-left: 15px;
 }
 
@@ -140,18 +122,30 @@
   background: transparent;
   border: none;
   font-size: 0.95rem;
-  color: var(--text-dark);
+  color: var(--text-light);
   padding: 12px 10px;
 }
 
 .custom-input-group .form-control:focus {
-  box-shadow: none; /* Quitamos el brillo azul de bootstrap */
+  box-shadow: none;
   background: transparent;
+  color: var(--text-light);
 }
 
-/* 7. Checkbox y Links */
+.custom-input-group .form-control::placeholder {
+  color: #555;
+}
+
 .options-row {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.custom-checkbox label {
+  color: var(--text-gray);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .forgot-link {
@@ -160,40 +154,92 @@
 }
 
 .forgot-link:hover {
-  text-decoration: underline;
+  color: var(--text-light);
 }
 
-/* 8. Botón Principal */
 .btn-primary.login-btn {
-  background-color: var(--accent-color);
-  border-color: var(--accent-color);
+  background-color: var(--neon-accent);
+  color: var(--bg-dark);
+  border: none;
   width: 100%;
-  padding: 12px;
-  font-weight: 600;
+  padding: 14px;
+  font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 1px;
-  font-size: 0.9rem;
-  border-radius: 8px; /* Un poco más redondeado */
-  margin-top: 10px;
-  transition: background-color 0.3s;
+  font-size: 1rem;
+  border-radius: 6px;
+  transition: opacity 0.3s;
 }
 
 .btn-primary.login-btn:hover {
-  background-color: #8a784d; /* Un poco más oscuro al hover */
-  border-color: #8a784d;
+  background-color: var(--neon-accent);
+  opacity: 0.8;
+  color: var(--bg-dark);
 }
 
-/* 9. Footer */
 .form-footer {
   text-align: center;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: var(--text-gray);
+  margin-top: 1.5rem;
 }
 
 .create-account-link {
-  color: var(--accent-color);
+  color: var(--text-light);
   font-weight: 700;
   text-decoration: none;
   text-transform: uppercase;
   margin-left: 5px;
+}
+
+.create-account-link:hover {
+  color: var(--neon-accent);
+}
+
+@media (max-width: 768px) {
+  .login-wrapper {
+    flex-direction: column;
+    height: auto; 
+    min-height: 100vh;
+  }
+
+  .login-image-side {
+    flex: none;
+    height: 35vh;
+    min-height: 250px;
+    width: 100%;
+  }
+
+  .back-link {
+    top: 1rem;
+    left: 1rem;
+    padding: 0.5rem 0.8rem;
+    font-size: 0.7rem;
+  }
+
+  .login-form-side {
+    padding: 2rem 1.5rem;
+    align-items: flex-start;
+  }
+
+  .login-header h1 {
+    font-size: 2.2rem;
+  }
+
+  .iconologin {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 1rem;
+  }
+
+  .custom-input-group .form-control {
+    font-size: 16px;
+  }
+
+  .options-row {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
 }
