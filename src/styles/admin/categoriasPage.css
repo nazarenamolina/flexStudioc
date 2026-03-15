@@ -1,6 +1,9 @@
 
 .contenedor-categorias {
     width: 100%;
+    max-height: 100vh; 
+    overflow-y: auto;
+    box-sizing: border-box; 
     padding: 10px 40px 40px 40px;
     display: flex;
     flex-direction: column;
@@ -131,11 +134,11 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.845); /* Fondo oscuro semitransparente */
+    background-color: rgba(0, 0, 0, 0.845);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000; /* Asegura que esté por encima de todo */
+    z-index: 1000; 
 }
 
 .modal-contenido {
@@ -205,7 +208,7 @@
 
 .modal-formulario input:focus,
 .modal-formulario textarea:focus {
-    border-color: #a3d139; /* Verde lima al hacer foco */
+    border-color: #a3d139;
 }
 
 .modal-acciones {
@@ -238,4 +241,22 @@
 .btn-guardar:disabled {
     background-color: #777;
     cursor: not-allowed;
+}
+
+/*  PERSONALIZACIÓN DE LA BARRA DE SCROLL */
+.contenedor-categorias::-webkit-scrollbar {
+    width: 8px;
+}
+
+.contenedor-categorias::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.contenedor-categorias::-webkit-scrollbar-thumb {
+    background-color: #d0d0d0; 
+    border-radius: 10px;
+}
+
+.contenedor-categorias::-webkit-scrollbar-thumb:hover {
+    background-color: #a3d139;
 }
