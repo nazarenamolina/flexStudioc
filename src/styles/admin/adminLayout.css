@@ -97,12 +97,6 @@
 }
 
 /* --- CONTENIDO PRINCIPAL --- */
-.main-content {
-    flex: 1;
-    padding: 40px;
-    overflow-y: auto;
-
-}
 .btn-add-class {
     background-color: #d4f85e;
     border: none;
