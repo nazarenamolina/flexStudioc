@@ -1,98 +1,277 @@
-.registro-container {
-    max-width: 400px;
-    margin: 40px auto;
-    font-family: sans-serif;
+:root {
+  --bg-dark: #131313;
+  --bg-form-side: #181818;
+  --neon-accent: #d7f250;
+  --text-light: #ffffff;
+  --text-gray: #a0a0a0;
+  --input-bg: #1e1e1e;
+  --error-color: #ff4d4d;
+}
+
+.registro-wrapper {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  background-color: var(--bg-dark);
+}
+
+.registro-image-side {
+  flex: 1.2;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.back-link {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  background-color: rgba(20, 20, 20, 0.8);
+  color: var(--text-gray);
+  padding: 0.6rem 1.2rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: color 0.3s ease;
+  z-index: 10;
+}
+
+.back-link:hover {
+  color: var(--text-light);
+}
+
+.registro-form-side {
+  flex: 1;
+  background-color: var(--bg-form-side);
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+  padding: 3rem 2rem;
+}
+
+.registro-form-side::-webkit-scrollbar {
+  width: 8px;
+}
+.registro-form-side::-webkit-scrollbar-track {
+  background: var(--bg-form-side);
+}
+.registro-form-side::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+.registro-form-side::-webkit-scrollbar-thumb:hover {
+  background: var(--neon-accent);
+}
+
+.registro-form-container {
+  width: 100%;
+  max-width: 500px;
+}
+
+.registro-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.registro-header h3 {
+  color: var(--neon-accent);
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -1px;
+}
+
+.subtitle {
+  color: var(--text-gray);
+  font-size: 0.95rem;
+  margin-top: 10px;
+}
+
+.custom-form {
+  text-align: left;
+}
+
+.section-title {
+  color: var(--text-light);
+  font-size: 1.1rem;
+  border-bottom: 1px solid #333;
+  padding-bottom: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.divider {
+  border-color: #333;
+  margin: 2rem 0;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
 }
 
 .form-group {
-    margin-bottom: 15px;
-    display: flex;
-    flex-direction: column;
+  margin-bottom: 1.2rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .form-group label {
-    margin-bottom: 5px;
-    font-weight: bold;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-gray);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
 }
 
-.form-group input {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+.custom-input {
+  background-color: var(--input-bg);
+  border: 1px solid var(--neon-accent);
+  border-radius: 6px;
+  color: var(--text-light);
+  padding: 12px 15px;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  width: 100%;
+  box-shadow: 0 0 5px rgba(212, 255, 20, 0.05);
 }
 
-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #333;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+.custom-input:focus {
+  outline: none;
+  box-shadow: 0 0 8px rgba(212, 255, 20, 0.2);
 }
 
-button:disabled {
-    background-color: #999;
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
 }
 
-.password-container {
-    display: flex;
-    gap: 10px;
-    align-items: center;
+.password-input-row {
+  display: flex;
+  gap: 10px;
 }
 
-.input-password {
-    flex: 1;
+.password-input-row .custom-input {
+  flex: 1;
 }
 
 .btn-toggle-password {
-    width: auto;
-    padding: 8px 12px;
-    background-color: #444;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
+  background-color: transparent;
+  color: var(--text-gray);
+  border: 1px solid #444;
+  border-radius: 6px;
+  padding: 0 15px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
 }
 
 .btn-toggle-password:hover {
-    background-color: #555;
+  border-color: var(--neon-accent);
+  color: var(--neon-accent);
 }
 
-.btn-submit {
-    margin-top: 20px;
-    width: 100%;
-    padding: 12px;
-    background-color: #000;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-weight: bold;
-    cursor: pointer;
+.password-rules-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
 }
 
-.btn-submit:disabled {
-    background-color: #999;
-    cursor: not-allowed;
+.badge-rule {
+  font-size: 0.65rem;
+  padding: 5px 10px;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--text-gray);
+  border: 1px solid #333;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  user-select: none;
 }
 
-.password-rules {
-    list-style: none;
-    padding: 0;
-    margin: 8px 0 0 0;
-    font-size: 12px;
+.badge-rule.met {
+  background-color: rgba(212, 255, 20, 0.1);
+  color: var(--neon-accent);
+  border-color: var(--neon-accent);
+  box-shadow: 0 0 6px rgba(212, 255, 20, 0.2);
 }
 
-.password-rules li {
-    margin-bottom: 4px;
-    transition: color 0.3s ease;
+.btn-primary.login-btn {
+  background-color: var(--neon-accent);
+  color: var(--bg-dark);
+  border: none;
+  width: 100%;
+  padding: 14px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 1rem;
+  border-radius: 6px;
+  transition: opacity 0.3s;
+  cursor: pointer;
+  margin-top: 1rem;
 }
 
-.rule-pass {
-    color: #28a745;
+.btn-primary.login-btn:hover:not(:disabled) {
+  opacity: 0.8;
 }
 
-.rule-fail {
-    color: #dc3545; 
+.btn-primary.login-btn:disabled {
+  background-color: #444;
+  color: #888;
+  cursor: not-allowed;
+}
+
+.form-footer {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-gray);
+}
+
+.create-account-link {
+  color: var(--text-light);
+  font-weight: 700;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.create-account-link:hover {
+  color: var(--neon-accent);
+}
+
+@media (max-width: 768px) {
+  .registro-wrapper {
+    flex-direction: column;
+    height: auto;
+    min-height: 100vh;
+  }
+  .registro-image-side {
+    flex: none;
+    height: 25vh;
+    min-height: 200px;
+  }
+  .back-link {
+    top: 1rem;
+    left: 1rem;
+    padding: 0.5rem 0.8rem;
+    font-size: 0.7rem;
+  }
+  .registro-form-side {
+    padding: 2rem 1.5rem;
+    overflow-y: visible;
+  }
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
 }
