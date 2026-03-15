@@ -1,65 +1,15 @@
-/* --- CONTENEDOR PRINCIPAL --- */
+
 .contenedor-categorias {
     width: 100%;
     padding: 10px 40px 40px 40px;
     display: flex;
     flex-direction: column;
     gap: 30px;
-    font-family: 'Inter', sans-serif; /* O la fuente que uses en tu proyecto */
+    font-family: 'Inter', sans-serif; 
 }
 
-/* --- BARRA SUPERIOR --- */
-.cabecera-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #eaeaea;
-    padding-bottom: 20px;
-}
 
-.titulo-seccion h3 {
-    margin: 0;
-    font-size: 18px;
-    color: #333;
-}
 
-.acciones-top {
-    display: flex;
-    gap: 15px;
-    align-items: center;
-}
-
-.caja-busqueda {
-    display: flex;
-    align-items: center;
-    background-color: #ffffff;
-    border: 1px solid #eaeaea;
-    border-radius: 20px;
-    padding: 8px 16px;
-    gap: 10px;
-    width: 250px;
-}
-
-.caja-busqueda input {
-    border: none;
-    outline: none;
-    font-size: 14px;
-}
-
-.boton-icono {
-    background: #ffffff;
-    border: 1px solid #eaeaea;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    color: #666;
-}
-
-/* --- CABECERA PRINCIPAL --- */
 .cabecera-principal {
     display: flex;
     justify-content: space-between;
@@ -99,7 +49,6 @@
     transform: scale(1.02);
 }
 
-/* --- TARJETAS DE RESUMEN --- */
 .cuadricula-resumen {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -127,10 +76,9 @@
     color: #111;
 }
 
-/* --- CUADRÍCULA DE CATEGORÍAS --- */
+
 .cuadricula-tarjetas {
     display: grid;
-    /* Esto hace que las tarjetas se ajusten automáticamente si la pantalla se achica */
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 25px;
     margin-top: 10px;
@@ -153,7 +101,6 @@
 .imagen-categoria {
     height: 140px;
     width: 100%;
-    /* El borde superior redondeado de la imagen */
     border-radius: 24px 24px 0 0; 
 }
 
@@ -178,3 +125,117 @@
     display: block;
 }
 
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.845); /* Fondo oscuro semitransparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Asegura que esté por encima de todo */
+}
+
+.modal-contenido {
+    background-color: #fff;
+    width: 100%;
+    max-width: 500px;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    animation: aparecerModal 0.3s ease-out;
+}
+
+@keyframes aparecerModal {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-cabecera {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.modal-cabecera h2 {
+    margin: 0;
+    font-size: 22px;
+    color: #111;
+}
+
+.btn-cerrar-modal {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #888;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+}
+
+.btn-cerrar-modal:hover {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.modal-formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.modal-formulario input,
+.modal-formulario textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 14px;
+    margin-top: 5px;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.modal-formulario input:focus,
+.modal-formulario textarea:focus {
+    border-color: #a3d139; /* Verde lima al hacer foco */
+}
+
+.modal-acciones {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.btn-cancelar {
+    background-color: transparent;
+    color: #555;
+    border: 1px solid #ddd;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-guardar {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-guardar:disabled {
+    background-color: #777;
+    cursor: not-allowed;
+}
