@@ -104,7 +104,7 @@ function HomePage() {
                       </Card.Text>
                     </div>
                     <OverlayTrigger
-                      trigger="hover"
+                      trigger={['hover', 'focus']}
                       placement="bottom"
                       overlay={
                         <Popover id={`popover-${servicio.id}`}>
