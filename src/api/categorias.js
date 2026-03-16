@@ -43,3 +43,12 @@ export const eliminarCategoriaRequest = async (id) => {
         throw error.response?.data?.message || 'Error al eliminar la categoría';
     }
 };
+
+export const obtenerCategoriaPorIdRequest = async (id) => {
+    try {
+        const respuesta = await axios.get(`/categorias/${id}`);
+        return respuesta.data;
+    } catch (error) {
+        throw error.response?.data?.message || 'Error al cargar los detalles de la categoría';
+    }
+};
