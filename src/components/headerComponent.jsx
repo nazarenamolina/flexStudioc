@@ -64,7 +64,11 @@ function HeaderComponent() {
                     <NavDropdown
                       title={<span><CircleUser size={23} className="me-1" /> Hola, {usuario?.nombre}</span>}id="usuario-dropdown" className="custom-dropdown">
                       <NavDropdown.Item href="/mi-perfil">Mi Perfil</NavDropdown.Item>
+                      {usuario?.rol === "ADMIN" && (
+                        <NavDropdown.Item href="/admin">Panel de Admin</NavDropdown.Item>
+                      )}
                       <NavDropdown.Divider />
+                  
                       <NavDropdown.Item onClick={handleLogout} className="text-danger">
                         <LogOut size={16} className="me-2"/> Cerrar Sesión
                       </NavDropdown.Item>
