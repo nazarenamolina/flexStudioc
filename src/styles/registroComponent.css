@@ -71,7 +71,9 @@
 
 .registro-form-container {
   width: 100%;
-  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
 }
 
 .registro-header {
@@ -236,6 +238,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   text-align: center;
   font-size: 0.85rem;
   color: var(--text-gray);
+  margin-top: auto;
+  padding-bottom: 2rem;
+  padding-top: 2rem;
 }
 
 .create-account-link {
@@ -258,7 +263,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   .registro-image-side {
     flex: none;
     height: 25vh;
-    min-height: 200px;
+    min-height: 400px;
   }
   .back-link {
     top: 1rem;
