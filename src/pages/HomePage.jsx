@@ -68,7 +68,7 @@ function HomePage() {
                       </Card.Title>
                       <div className="description-box mb-4">
                         <Card.Text className="mb-0 text-light opacity-75">
-                          {servicio.descripcion}
+                          {servicio.descripcionCard}
                         </Card.Text>
                       </div>
                       <OverlayTrigger

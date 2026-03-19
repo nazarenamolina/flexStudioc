@@ -11,6 +11,7 @@ const CategoriaEditorPage = () => {
   const [borrador, setBorrador] = useState({
     titulo: '',
     subtituloRosa: '', 
+    descripcionCard:'',
     descripcionBreve: '',
     descripcionDetallada: '',
     precio: 0,
@@ -82,6 +83,7 @@ const CategoriaEditorPage = () => {
 
       // Adjuntamos los textos
       formData.append('titulo', tituloFinal);
+      formData.append('descripcionCard', borrador.descripcionCard);
       formData.append('descripcionBreve', borrador.descripcionBreve);
       formData.append('descripcionDetallada', borrador.descripcionDetallada);
       formData.append('precio', borrador.precio);
@@ -133,6 +135,11 @@ const CategoriaEditorPage = () => {
         <div className="grupo-formulario">
             <label>Precio ($ USD)</label>
             <input type="number" name="precio" value={borrador.precio} onChange={manejarCambio} className="input-editor" />
+        </div>
+
+         <div className="grupo-formulario">
+          <label>Descripción para la tarjeta de inicio</label>
+          <textarea name="descripcionCard" value={borrador.descripcionCard} onChange={manejarCambio} className="input-editor" rows="2" placeholder="Un gancho comercial corto..." />
         </div>
         
         <div className="grupo-formulario">

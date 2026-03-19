@@ -1,70 +1,73 @@
-/* Contenedor principal que ocupa toda la pantalla */
+/* =========================================================
+   VARIABLES GLOBALES Y FUENTES (Heredadas de tu diseño final)
+   ========================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Oswald:wght@700&display=swap');
+
+:root {
+  --bg-card: #131313;
+  --text-main: #ffffff;
+  --text-dark: #131313;
+  --text-muted: #a1a1aa;
+  --text-muted-dark: #555555;
+  --neon-pink: #d7f250; /* Tu verde lima */
+  --bg-light: #f9f9f9;  /* Fondo claro para la página */
+}
+
+/* =========================================================
+   CONTENEDOR PRINCIPAL (PANTALLA DIVIDIDA)
+   ========================================================= */
 .contenedor-editor-pantalla-dividida {
   display: flex;
   width: 100%;
-  height: 100vh; /* Ocupa el 100% de la altura visible */
-  overflow: hidden; /* Evita scroll en el contenedor principal */
+  height: 100vh;
+  overflow: hidden;
   background-color: #000;
 }
 
-/* --- LADO IZQUIERDO: CONTROLES (35%) --- */
+/* =========================================================
+   LADO IZQUIERDO: CONTROLES DEL ADMINISTRADOR (35%)
+   ========================================================= */
 .panel-controles-izquierdo {
   width: 35%;
   min-width: 350px;
-  background-color: #ffffff; /* Fondo claro para que Cande lea bien los inputs */
+  background-color: #ffffff;
   border-right: 1px solid #e0e0e0;
   padding: 2rem;
-  overflow-y: auto; /* Scroll independiente para los inputs */
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
   z-index: 10;
 }
 
-.titulo-editor {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 1rem;
-}
+.titulo-editor { font-size: 1.5rem; font-weight: bold; color: #333; margin-bottom: 1rem; }
+.grupo-formulario { display: flex; flex-direction: column; gap: 0.5rem; }
+.grupo-formulario label { font-size: 0.85rem; font-weight: 600; color: #555; text-transform: uppercase; }
+.input-editor { padding: 0.75rem; border: 1px solid #ccc; border-radius: 4px; font-size: 1rem; background-color: #f9f9f9; }
+.input-editor:focus { outline: none; border-color: var(--neon-pink); box-shadow: 0 0 0 2px rgba(215, 242, 80, 0.3); }
 
-.grupo-formulario {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
+.fila-form-editor { display: flex; gap: 1rem; }
+.divisor-editor { margin: 1.5rem 0; border: 0; border-top: 1px solid #e0e0e0; }
 
-.grupo-formulario label {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #555;
-  text-transform: uppercase;
-}
+.btn-agregar-beneficio { background: var(--neon-pink); color: #111; border: none; padding: 5px 10px; font-weight: bold; border-radius: 4px; cursor: pointer; }
+.tarjeta-beneficio-editor { background: #f4f4f4; padding: 10px; border-radius: 6px; margin-bottom: 10px; display: flex; flex-direction: column; gap: 5px; }
+.btn-eliminar-beneficio { background: transparent; color: red; border: none; text-align: right; font-size: 0.8rem; cursor: pointer; }
+.btn-guardar-gigante { background: #111; color: #fff; padding: 15px; font-size: 1.1rem; font-weight: bold; border: none; border-radius: 6px; cursor: pointer; margin-top: 20px; }
+.btn-guardar-gigante:disabled { background: #ccc; cursor: not-allowed; }
 
-.input-editor {
-  padding: 0.75rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 1rem;
-  background-color: #f9f9f9;
-}
-
-.input-editor:focus {
-  outline: none;
-  border-color: #d4f85e; /* El verde lima de tu marca */
-  box-shadow: 0 0 0 2px rgba(212, 248, 94, 0.3);
-}
-
-/* --- LADO DERECHO: VISTA PREVIA (65%) --- */
+/* =========================================================
+   LADO DERECHO: VISTA PREVIA EN VIVO (65%)
+   AQUÍ APLICAMOS LA MAGIA DE TU DISEÑO FINAL
+   ========================================================= */
 .panel-vista-previa-derecho {
   width: 65%;
-  background-color: #111111; /* Fondo oscuro premium */
-  color: #ffffff;
-  overflow-y: auto; /* Scroll independiente para la vista previa */
+  background-color: var(--bg-light); /* Fondo claro simulando la web real */
+  color: var(--text-dark); /* Texto oscuro por defecto */
+  overflow-y: auto;
   position: relative;
 }
 
-/* Área gigante de la imagen Hero */
+/* --- HERO (Banner Gigante) --- */
 .previa-hero-seccion {
   min-height: 80vh;
   background-size: cover;
@@ -78,11 +81,8 @@
 
 .previa-hero-capa-oscura {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to right, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3) 100%);
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(to right, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.2) 100%);
   z-index: 1;
 }
 
@@ -93,171 +93,146 @@
 }
 
 .previa-etiqueta {
-  color: #ff33cc; /* Rosa neón basado en tu imagen */
-  font-size: 0.8rem;
-  font-weight: bold;
+  color: var(--neon-pink); 
+  font-size: 1rem;
+  font-weight: 800;
   letter-spacing: 2px;
   text-transform: uppercase;
   margin-bottom: 1rem;
   display: block;
 }
 
+/* Aquí aplicamos Caveat y Oswald al título de la vista previa */
 .previa-titulo-principal {
-  font-size: 4rem;
-  font-weight: 900;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   line-height: 1;
+  font-family: 'Caveat', cursive; /* Primera línea (Blanca/Oscura) */
+  font-size: 3rem;
+  color: var(--text-dark);
+  font-weight: 600;
   margin-bottom: 1rem;
-  text-transform: uppercase;
+  transform: translateY(20px) translateX(10px);
 }
 
 .previa-titulo-principal span {
-  color: #ff33cc; /* Rosa neón */
+  font-family: 'Oswald', sans-serif; /* Segunda línea (Lima) */
+  font-size: 6rem;
+  font-weight: 700;
+  color: var(--neon-pink);
+  text-transform: uppercase;
+  letter-spacing: -2px;
+  text-shadow: 4px 4px 15px rgba(0, 0, 0, 0.1);
+  transform: translateY(-10px) translateX(-10px);
 }
 
 .previa-descripcion-breve {
   font-size: 1.1rem;
-  color: #cccccc;
-  line-height: 1.5;
+  color: var(--text-muted-dark);
+  line-height: 1.6;
+  font-weight: 500;
   margin-bottom: 2rem;
+  max-width: 450px;
 }
 
 .previa-precio-boton {
-  background-color: #ff33cc;
-  color: white;
+  background-color: var(--neon-pink);
+  color: var(--text-dark);
   border: none;
   padding: 1rem 2rem;
   font-size: 1.2rem;
-  font-weight: bold;
+  font-weight: 800;
   border-radius: 4px;
   cursor: pointer;
 }
 
-/* --- Estilos para los controles extra izquierdos --- */
-.btn-agregar-beneficio {
-  background: #d4f85e;
-  border: none;
-  padding: 5px 10px;
-  font-weight: bold;
-  border-radius: 4px;
-  cursor: pointer;
-}
-.tarjeta-beneficio-editor {
-  background: #f4f4f4;
-  padding: 10px;
-  border-radius: 6px;
-  margin-bottom: 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-.btn-eliminar-beneficio {
-  background: transparent;
-  color: red;
-  border: none;
-  text-align: right;
-  font-size: 0.8rem;
-  cursor: pointer;
-}
-.btn-guardar-gigante {
-  background: #111;
-  color: #fff;
-  padding: 15px;
-  font-size: 1.1rem;
-  font-weight: bold;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  margin-top: 20px;
-}
-.btn-guardar-gigante:disabled {
-  background: #ccc;
-  cursor: not-allowed;
-}
-
-/* --- Estilos para la grilla de Beneficios Derecha (Vista Previa) --- */
-.previa-beneficios-seccion {
-  padding: 4rem;
-  display: flex;
-  gap: 2rem;
-  background-color: #111;
-}
-.previa-beneficios-header {
-  width: 30%;
-}
-.previa-beneficios-header h2 {
-  font-size: 2.5rem;
-  font-weight: 900;
-  line-height: 1.1;
-  margin: 10px 0;
-}
-.previa-grilla-beneficios {
-  width: 70%;
-  display: grid;
-  grid-template-columns: 1fr 1fr; /* Dos columnas */
-  gap: 1.5rem;
-}
-.previa-tarjeta-beneficio {
-  background-color: #1a1a1a;
-  border-left: 3px solid #ff33cc; /* Borde rosa neón */
-  padding: 2rem;
-  border-radius: 4px;
-}
-.icono-rosa {
-  color: #ff33cc;
-  font-size: 1.5rem;
-  margin-bottom: 15px;
-}
-.previa-tarjeta-beneficio h4 {
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-.previa-tarjeta-beneficio p {
-  color: #999;
-  font-size: 0.95rem;
-  line-height: 1.5;
-}
-
-.fila-form-editor {
-  display: flex;
-  gap: 1rem;
-}
-.divisor-editor {
-  margin: 1.5rem 0;
-  border: 0;
-  border-top: 1px solid #e0e0e0;
-}
-
-/* Descripción Larga en Vista Previa */
+/* --- SECCIÓN DESCRIPCIÓN LARGA --- */
 .previa-descripcion-larga {
   padding: 3rem 4rem 1rem 4rem;
-  background-color: #111;
+  background-color: var(--bg-light);
 }
 .previa-descripcion-larga h3 {
   font-size: 1.8rem;
   margin-bottom: 1rem;
-  color: #fff;
+  color: var(--text-dark);
 }
 .previa-descripcion-larga p {
   font-size: 1.1rem;
   line-height: 1.6;
-  color: #ccc;
-  white-space: pre-wrap; /* Respeta los saltos de línea que Cande ponga en el textarea */
+  color: var(--text-muted-dark);
+  white-space: pre-wrap;
 }
 
-/* Sección de Video de Muestra */
+/* --- SECCIÓN BENEFICIOS (Tarjetas) --- */
+.previa-beneficios-seccion {
+  padding: 4rem;
+  display: flex;
+  gap: 2rem;
+  background-color: var(--bg-light);
+}
+
+.previa-beneficios-header { width: 30%; }
+.previa-beneficios-header h2 {
+  font-size: 2.2rem;
+  font-weight: 900;
+  padding: 1.5rem;
+  margin: 10px 0;
+  border-radius: 12px;
+  background-color: var(--neon-pink);
+  color: var(--text-main);
+}
+
+.previa-grilla-beneficios {
+  width: 70%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.previa-tarjeta-beneficio {
+  background-color: var(--bg-card); /* Tarjeta Negra */
+  color: var(--text-main); /* Texto Blanco */
+  padding: 2rem;
+  border-radius: 8px;
+  border-left: 5px solid transparent;
+  transition: border-color 0.3s ease;
+}
+.previa-tarjeta-beneficio:hover {
+  border-left-color: var(--neon-pink);
+}
+
+.icono-rosa {
+  color: var(--neon-pink);
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+.previa-tarjeta-beneficio h4 { font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; }
+.previa-tarjeta-beneficio p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; }
+
+
+/* --- SECCIÓN VIDEO DE MUESTRA --- */
 .previa-video-muestra-seccion {
-  padding: 3rem 4rem 4rem 4rem;
-  background-color: #111;
+  padding: 4rem;
+  background-color: var(--bg-light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .previa-video-muestra-seccion h2 {
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   font-weight: 900;
-  margin-bottom: 2rem;
-  text-transform: uppercase;
+  padding: 1.5rem 2rem;
+  margin-bottom: 3rem;
+  border-radius: 12px;
+  background-color: var(--neon-pink);
+  color: var(--text-main);
+  text-align: center;
 }
 .contenedor-mux-previa {
-  box-shadow: 0 20px 40px rgba(0,0,0,0.5); /* Sombra pesada para que el video resalte */
-  border: 1px solid #333;
+  width: 80%;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
   border-radius: 8px;
+  overflow: hidden;
+  background-color: #000;
 }
