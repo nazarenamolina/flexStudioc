@@ -44,7 +44,7 @@ function HomePage() {
           <article className="articleflexible">
             {cargando ? (
               <div className="text-center w-100 my-5">
-                <h4 style={{ color: '#a3d139' }}>Cargando clases disponibles...</h4>
+                <h4>Cargando clases disponibles...</h4>
               </div>
             ) : categorias.length === 0 ? (
               <div className="text-center w-100 my-5">
