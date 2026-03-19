@@ -1,13 +1,10 @@
 import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { obtenerCategoriaPorIdRequest } from "../api/categorias";
+import MuxPlayer from "@mux/mux-player-react"; // 👈 Importamos Mux para el video
 import {
-  FaPlay,
-  FaVideo,
-  FaHeadset,
-  FaInfinity,
-  FaMedal,
-  FaCheckCircle,
+  FaCheckCircle, // Usaremos este icono genérico para los beneficios dinámicos
+  FaStar
 } from "react-icons/fa";
 import "../styles/categoriaDetail.css";
 
@@ -31,27 +28,36 @@ const CategoriaDetailPage = () => {
     cargarDetalle();
   }, [id]);
 
-  if (cargando)
-    return <div className="ps-loading">Cargando la masterclass...</div>;
+  if (cargando) return <div className="ps-loading">Cargando la masterclass...</div>;
   if (error) return <div className="ps-error">{error}</div>;
   if (!categoria) return null;
 
-  // Para simular el título en dos partes como en la imagen ("POLE SPORT" "MASTERCLASS")
-  const tituloPartes = categoria.titulo
-    ? categoria.titulo.split(" ")
-    : ["CLASE", "EXCLUSIVA"];
-  const primeraParte = tituloPartes
-    .slice(0, Math.ceil(tituloPartes.length / 2))
-    .join(" ");
-  const segundaParte = tituloPartes
-    .slice(Math.ceil(tituloPartes.length / 2))
-    .join(" ");
+  // 👇 LÓGICA DE TÍTULO MEJORADA: Buscamos el separador "|" que guardamos desde el Admin
+  let primeraParte = "CLASE";
+  let segundaParte = "EXCLUSIVA";
+
+  if (categoria.titulo) {
+    if (categoria.titulo.includes('|')) {
+      const partes = categoria.titulo.split('|');
+      primeraParte = partes[0].trim();
+      segundaParte = partes[1].trim();
+    } else {
+      // Fallback por si hay categorías viejas sin el "|"
+      const partes = categoria.titulo.split(" ");
+      primeraParte = partes.slice(0, Math.ceil(partes.length / 2)).join(" ");
+      segundaParte = partes.slice(Math.ceil(partes.length / 2)).join(" ");
+    }
+  }
 
   return (
     <>
       <main className="ps-page-container">
+        
+        {/* === SECCIÓN HERO === */}
         <section className="contenedorImg">
-            <img src={categoria.imagenUrl} className="imgbanner"/>
+          {/* 👇 Usamos imagenHero en lugar de imagenUrl vieja */}
+          <img src={categoria.imagenHero} className="imgbanner" alt={categoria.titulo} />
+          
           <div className="titulo">
             <span className="ps-badge">ELITE TRAINING PROGRAM</span>
             <h1 className="titulo-superpuesto">
@@ -59,15 +65,28 @@ const CategoriaDetailPage = () => {
               <br />
               <span className="texto-principal">{segundaParte}</span>
             </h1>
-            <p className="ps-description">{categoria.descripcion}</p>
+            
+            {/* 👇 Usamos la descripción corta */}
+            <p className="ps-description">{categoria.descripcionBreve}</p>
+            
             <div className="ps-hero-actions">
               <button className="ps-btn-primary">
                 COMPRAR AHORA ${categoria.precio}
               </button>
-              <button className="ps-btn-secondary">VIEW TRAILER</button>
+              {categoria.playbackIdMuestra && (
+                <button 
+                  className="ps-btn-secondary" 
+                  onClick={() => document.getElementById('video-muestra').scrollIntoView({ behavior: 'smooth' })}
+                >
+                  VIEW TRAILER
+                </button>
+              )}
             </div>
           </div>
         </section>
+
+
+        {/* === SECCIÓN QUÉ INCLUYE (BENEFICIOS) === */}
         <section className="ps-features">
           <div className="ps-features-text">
             <span className="ps-badge">SUMATE!</span>
@@ -76,59 +95,54 @@ const CategoriaDetailPage = () => {
               <br />
               SUSCRIPCIÓN?
             </h2>
+            {/* 👇 Usamos la descripción detallada de la base de datos */}
             <p>
-              Durante el programa vas a potenciar tu fuerza, flexibilidad y resistencia de forma integral. Mi objetivo es que logres una coordinación y técnica impecables, siempre desde un enfoque consciente y sostenible para tu cuerpo.
+              {categoria.descripcionDetallada || 
+                "Durante el programa vas a potenciar tu fuerza, flexibilidad y resistencia de forma integral."}
             </p>
           </div>
+          
           <div className="ps-features-grid">
-            <div className="ps-feature-card">
-              <FaVideo className="ps-feature-icon" />
-              <h3>Video - lecciones en alta definición</h3>
-              <p>
-                Step-by-step 4K tutorials focusing on biomechanics and artistry.
-              </p>
-            </div>
-            <div className="ps-feature-card">
-              <FaHeadset className="ps-feature-icon" />
-              <h3>Soporte personalizado</h3>
-              <p>
-                Direct access to elite coaches for form correction and feedback.
-              </p>
-            </div>
-            <div className="ps-feature-card">
-              <FaInfinity className="ps-feature-icon" />
-              <h3>Acceso de por vida</h3>
-              <p>
-                Learn at your own pace with permanent access to the curriculum.
-              </p>
-            </div>
-            <div className="ps-feature-card">
-              <FaMedal className="ps-feature-icon" />
-              <h3>Certificado al finalizar</h3>
-              <p>
-                Formal recognition of your technical proficiency in Pole Sport.
-              </p>
-            </div>
-          </div>
-        </section>
-        <section className="ps-preview">
-          <span className="ps-badge">PREVIEW</span>
-          <h2>VIDEO DE MUESTRA</h2>
-          <div className="ps-video-player">
-            {/* Aquí iría la etiqueta <video> real, usando un div de placeholder por ahora */}
-            <div className="ps-video-placeholder">
-              <button className="ps-play-btn">
-                <FaPlay />
-              </button>
-              <div className="ps-video-controls">
-                <div className="ps-progress-bar">
-                  <div className="ps-progress-fill"></div>
+            {/* 👇 Renderizamos los beneficios dinámicamente con un map */}
+            {categoria.beneficios && categoria.beneficios.length > 0 ? (
+              categoria.beneficios.map((beneficio, index) => (
+                <div key={index} className="ps-feature-card">
+                  {/* Alternamos entre dos iconos para darle variedad visual */}
+                  {index % 2 === 0 ? <FaCheckCircle className="ps-feature-icon" /> : <FaStar className="ps-feature-icon" />}
+                  <h3>{beneficio.titulo}</h3>
+                  <p>{beneficio.descripcion}</p>
                 </div>
-              </div>
-            </div>
+              ))
+            ) : (
+              <p style={{color: '#888'}}>No hay beneficios detallados para esta clase aún.</p>
+            )}
           </div>
         </section>
 
+
+        {/* === SECCIÓN VIDEO DE MUESTRA (MUX) === */}
+        <section className="ps-preview" id="video-muestra">
+          <span className="ps-badge">PREVIEW</span>
+          <h2>VIDEO DE MUESTRA</h2>
+          
+          <div className="ps-video-player">
+            {/* 👇 Magia de Mux activada */}
+            {categoria.playbackIdMuestra ? (
+              <MuxPlayer
+                playbackId={categoria.playbackIdMuestra}
+                primaryColor="#d4f85e" /* Tu color verde lima espectacular */
+                style={{ width: '100%', aspectRatio: '16/9', borderRadius: '10px', overflow: 'hidden' }}
+              />
+            ) : (
+              <div className="ps-video-placeholder" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#111', aspectRatio: '16/9' }}>
+                <p style={{ color: '#666' }}>Tráiler no disponible de momento.</p>
+              </div>
+            )}
+          </div>
+        </section>
+
+
+        {/* === SECCIÓN LLAMADO A LA ACCIÓN (CTA) === */}
         <section className="ps-cta">
           <h2>
             LISTA PARA ELEVAR TU <br />
@@ -142,17 +156,12 @@ const CategoriaDetailPage = () => {
             </button>
           </div>
           <div className="ps-guarantees">
-            <span>
-              <FaCheckCircle className="ps-icon-small" /> SECURE PAYMENT
-            </span>
-            <span>
-              <FaCheckCircle className="ps-icon-small" /> INSTANT ACCESS
-            </span>
-            <span>
-              <FaCheckCircle className="ps-icon-small" /> 30-DAY GUARANTEE
-            </span>
+            <span><FaCheckCircle className="ps-icon-small" /> SECURE PAYMENT</span>
+            <span><FaCheckCircle className="ps-icon-small" /> INSTANT ACCESS</span>
+            <span><FaCheckCircle className="ps-icon-small" /> 30-DAY GUARANTEE</span>
           </div>
         </section>
+        
       </main>
     </>
   );
