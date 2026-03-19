@@ -53,7 +53,7 @@ function HomePage() {
             ) : (
               categorias.map((servicio) => (
                 <Card key={servicio.id} className="course-card border-0 text-white">
-                  <div className="card-background" style={{ backgroundImage: `url(${servicio.imagenUrl || 'holder.js/300x500'})` }}>
+                  <div className="card-background" style={{ backgroundImage: `url(${servicio.imagenTarjeta || 'holder.js/300x500'})` }}>
                     <div className="card-overlay"></div>
                   </div>
 

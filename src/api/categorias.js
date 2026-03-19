@@ -11,7 +11,6 @@ export const obtenerCategoriasRequest = async () => {
 
 export const crearCategoriaRequest = async (datosCategoria) => {
     try {
-        // 👇 Le avisamos a Axios que enviaremos un formulario con archivos 👇
         const respuesta = await axios.post('/categorias', datosCategoria, {
             headers: {
                 'Content-Type': 'multipart/form-data',

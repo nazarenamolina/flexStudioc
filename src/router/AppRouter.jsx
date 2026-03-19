@@ -12,6 +12,8 @@ import { RutaAdmin } from './RutaAdmin.jsx';
 import { RutaProtegida } from './RutaProtegida.jsx';
 import { RutaPublica } from './RutaPublica.jsx';
 import CategoriaDetailPage from '../pages/CategoriaDetailPage.jsx'; 
+import AdminVideosPage from '../pages/admin/AdminVideosPage.jsx';
+import CategoriaEditorPage from '../pages/admin/CategoriaEditorPage.jsx';
 
 const LayoutConNav = () => {
   return (
@@ -38,7 +40,9 @@ export const AppRouter = () => {
           <Route element={<AdminLayout />}>
             <Route path="/admin" element={<AdminDashboardPage />} />
             <Route path="/admin/categorias" element={<CategoriasPage />} />
-            {/* Futuras rutas del panel irán aquí */}
+            <Route path="/admin/categorias/nueva" element={<CategoriaEditorPage />} />
+            <Route path="/admin/videos" element={<AdminVideosPage/>}/>
+            
           </Route>
         </Route>
 
