@@ -1,90 +1,161 @@
-import { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { obtenerCategoriaPorIdRequest } from '../api/categorias';
-import { FaArrowLeft, FaPlayCircle, FaLock } from 'react-icons/fa';
-import '../styles/categoriaDetail.css';
+import { useState, useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
+import { obtenerCategoriaPorIdRequest } from "../api/categorias";
+import {
+  FaPlay,
+  FaVideo,
+  FaHeadset,
+  FaInfinity,
+  FaMedal,
+  FaCheckCircle,
+} from "react-icons/fa";
+import "../styles/categoriaDetail.css";
 
 const CategoriaDetailPage = () => {
-    // 1. Extraemos el ID de la URL
-    const { id } = useParams();
-    
-    // 2. Estados
-    const [categoria, setCategoria] = useState(null);
-    const [cargando, setCargando] = useState(true);
-    const [error, setError] = useState(null);
+  const { id } = useParams();
+  const [categoria, setCategoria] = useState(null);
+  const [cargando, setCargando] = useState(true);
+  const [error, setError] = useState(null);
 
-    // 3. Traer los datos al montar el componente
-    useEffect(() => {
-        const cargarDetalle = async () => {
-            try {
-                const data = await obtenerCategoriaPorIdRequest(id);
-                setCategoria(data);
-            } catch (err) {
-                setError('No se pudo encontrar la información de esta clase.');
-            } finally {
-                setCargando(false);
-            }
-        };
-        cargarDetalle();
-    }, [id]);
+  useEffect(() => {
+    const cargarDetalle = async () => {
+      try {
+        const data = await obtenerCategoriaPorIdRequest(id);
+        setCategoria(data);
+      } catch (err) {
+        setError("No se pudo encontrar la información de esta clase.");
+      } finally {
+        setCargando(false);
+      }
+    };
+    cargarDetalle();
+  }, [id]);
 
-    if (cargando) return <div className="cd-loading">Cargando detalles de la clase...</div>;
-    if (error) return <div className="cd-error">{error}</div>;
-    if (!categoria) return null;
+  if (cargando)
+    return <div className="ps-loading">Cargando la masterclass...</div>;
+  if (error) return <div className="ps-error">{error}</div>;
+  if (!categoria) return null;
 
-    return (
-        <main className="cd-main-container">
-            {/* --- SECCIÓN HERO (Cabecera) --- */}
-            <section 
-                className="cd-hero-section"
-                style={{ backgroundImage: `url(${categoria.imagenUrl || 'https://via.placeholder.com/1200x400'})` }}
-            >
-                <div className="cd-hero-overlay"></div>
-                <div className="cd-hero-content">
-                    <Link to="/" className="cd-btn-volver">
-                        <FaArrowLeft /> Volver al inicio
-                    </Link>
-                    <span className="cd-badge">PLAN MENSUAL</span>
-                    <h1 className="cd-title">{categoria.titulo}</h1>
-                    <p className="cd-description">{categoria.descripcion}</p>
-                    <div className="cd-price-tag">
-                        ${categoria.precio} <span className="cd-price-month">/ mes</span>
-                    </div>
-                    {/* Botón de compra (Lógica a implementar a futuro) */}
-                    <button className="cd-btn-comprar">Inscribirme ahora</button>
+  // Para simular el título en dos partes como en la imagen ("POLE SPORT" "MASTERCLASS")
+  const tituloPartes = categoria.titulo
+    ? categoria.titulo.split(" ")
+    : ["CLASE", "EXCLUSIVA"];
+  const primeraParte = tituloPartes
+    .slice(0, Math.ceil(tituloPartes.length / 2))
+    .join(" ");
+  const segundaParte = tituloPartes
+    .slice(Math.ceil(tituloPartes.length / 2))
+    .join(" ");
+
+  return (
+    <>
+      <main className="ps-page-container">
+        <section className="contenedorImg">
+            <img src={categoria.imagenUrl} className="imgbanner"/>
+          <div className="titulo">
+            <span className="ps-badge">ELITE TRAINING PROGRAM</span>
+            <h1 className="titulo-superpuesto">
+              <span className="texto-cursiva">{primeraParte}</span>
+              <br />
+              <span className="texto-principal">{segundaParte}</span>
+            </h1>
+            <p className="ps-description">{categoria.descripcion}</p>
+            <div className="ps-hero-actions">
+              <button className="ps-btn-primary">
+                COMPRAR AHORA ${categoria.precio}
+              </button>
+              <button className="ps-btn-secondary">VIEW TRAILER</button>
+            </div>
+          </div>
+        </section>
+        <section className="ps-features">
+          <div className="ps-features-text">
+            <span className="ps-badge">SUMATE!</span>
+            <h2>
+              QUÉ INCLUYE LA
+              <br />
+              SUSCRIPCIÓN?
+            </h2>
+            <p>
+              Durante el programa vas a potenciar tu fuerza, flexibilidad y resistencia de forma integral. Mi objetivo es que logres una coordinación y técnica impecables, siempre desde un enfoque consciente y sostenible para tu cuerpo.
+            </p>
+          </div>
+          <div className="ps-features-grid">
+            <div className="ps-feature-card">
+              <FaVideo className="ps-feature-icon" />
+              <h3>Video - lecciones en alta definición</h3>
+              <p>
+                Step-by-step 4K tutorials focusing on biomechanics and artistry.
+              </p>
+            </div>
+            <div className="ps-feature-card">
+              <FaHeadset className="ps-feature-icon" />
+              <h3>Soporte personalizado</h3>
+              <p>
+                Direct access to elite coaches for form correction and feedback.
+              </p>
+            </div>
+            <div className="ps-feature-card">
+              <FaInfinity className="ps-feature-icon" />
+              <h3>Acceso de por vida</h3>
+              <p>
+                Learn at your own pace with permanent access to the curriculum.
+              </p>
+            </div>
+            <div className="ps-feature-card">
+              <FaMedal className="ps-feature-icon" />
+              <h3>Certificado al finalizar</h3>
+              <p>
+                Formal recognition of your technical proficiency in Pole Sport.
+              </p>
+            </div>
+          </div>
+        </section>
+        <section className="ps-preview">
+          <span className="ps-badge">PREVIEW</span>
+          <h2>VIDEO DE MUESTRA</h2>
+          <div className="ps-video-player">
+            {/* Aquí iría la etiqueta <video> real, usando un div de placeholder por ahora */}
+            <div className="ps-video-placeholder">
+              <button className="ps-play-btn">
+                <FaPlay />
+              </button>
+              <div className="ps-video-controls">
+                <div className="ps-progress-bar">
+                  <div className="ps-progress-fill"></div>
                 </div>
-            </section>
+              </div>
+            </div>
+          </div>
+        </section>
 
-            {/* --- SECCIÓN DE VIDEOS --- */}
-            <section className="cd-videos-section">
-                <h2 className="cd-section-title">Contenido de la disciplina</h2>
-                <p className="cd-section-subtitle">Lo que vas a encontrar al suscribirte a este plan.</p>
-
-                {categoria.videos && categoria.videos.length > 0 ? (
-                    <div className="cd-videos-grid">
-                        {categoria.videos.map((video, index) => (
-                            <div key={video.id} className="cd-video-card">
-                                <div className="cd-video-thumbnail">
-                                    <FaLock className="cd-icon-lock" />
-                                </div>
-                                <div className="cd-video-info">
-                                    <span className="cd-video-number">Clase {index + 1}</span>
-                                    <h4 className="cd-video-title">{video.titulo}</h4>
-                                    <p className="cd-video-duration">Duración: {video.duracion || 'N/A'}</p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                ) : (
-                    <div className="cd-empty-videos">
-                        <FaPlayCircle size={40} color="#ccc" />
-                        <p>Aún no hay videos subidos para esta categoría.</p>
-                        <span>¡Pronto agregaremos nuevo contenido!</span>
-                    </div>
-                )}
-            </section>
-        </main>
-    );
+        <section className="ps-cta">
+          <h2>
+            LISTA PARA ELEVAR TU <br />
+            POTENCIAL?
+          </h2>
+          <div className="ps-pricing-card">
+            <span className="ps-offer-badge">OFERTA DE LANZAMIENTO</span>
+            <div className="ps-price">${categoria.precio}</div>
+            <button className="btnCompra">
+              COMPRAR AHORA
+            </button>
+          </div>
+          <div className="ps-guarantees">
+            <span>
+              <FaCheckCircle className="ps-icon-small" /> SECURE PAYMENT
+            </span>
+            <span>
+              <FaCheckCircle className="ps-icon-small" /> INSTANT ACCESS
+            </span>
+            <span>
+              <FaCheckCircle className="ps-icon-small" /> 30-DAY GUARANTEE
+            </span>
+          </div>
+        </section>
+      </main>
+    </>
+  );
 };
 
 export default CategoriaDetailPage;
